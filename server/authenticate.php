@@ -3,7 +3,7 @@
 	//Decode received JSON data
 	$data = file_get_contents("php://input");
 	$receivedData = json_decode($data);
-
+	session_start();
 	include_once 'db_function.php';
 	$db = new DB_Functions();
 
@@ -21,7 +21,7 @@
 		        		session_start();
 		        		$_SESSION['usrName']  = $email;
 		        		$_SESSION['time']     = time();
-		        		$response = array("status" => 1,"message"=> "Success");
+		        		$response = array("status" => 1,"message"=> "Success","session" =>$_SESSION['usrName']);
 		        	}
 		        	else
 		        		$response = array("status" => 0,"message"=> "Error");
@@ -33,8 +33,8 @@
 		        echo json_encode($response);
 		    break;
 		    case 'isLogged':
-		    	if(isset($_SESSION))
-		    		$response = array("status" => 1,"message"=> "Success");
+		    	if(isset($_SESSION['usrName']))
+		    		$response = array("status" => 1,"message"=> "Success","session" =>$_SESSION['usrName']);
 		    	else
 		    		$response = array("status" => 0,"message"=> "Error");
 		    	echo json_encode($response);

@@ -2,23 +2,26 @@
   <div class="navbar-inner ">
     <a class="brand" href="#">Title</a>
     <ul class="nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li ng-hide="isAuth">
-        <form class="form-inline" >
+      <li class="active" ng-click="homeClick()"><a href="#">Home</a></li>
+      <li class="active" ng-click="nextpageClick()"><a href="#/page2">Page 2</a></li>
+    </ul>
+    <ul class="nav pull-right">
+      <li>
+        <form class="form-inline " ng-hide="isAuth" >
             <input type="text" class="input-small" placeholder="Email" ng-model="usrEmail">
             <input type="password" class="input-small" placeholder="Password" ng-model="usrPass">
-            <button type="submit" class="btn" ng-click="authenticate()">Sign in</button>
+           <button type="submit" class="btn" ng-click="authenticate()">Sign in</button>
         </form>
       </li>
-      <li ng-show="isAuth"> 
-        <button type="submit" class="btn" ng-click="logout()">Logout</button>
+      <li>
+        <button type="submit" class="btn pull-right" ng-click="logout()" ng-show="isAuth">Logout</button>
       </li>
-  </ul>
+    </ul>
   </div>
-  
+
 </div>
 <div class="container">
 	<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert()">{{alert.msg}}</alert>
-	
-	
+  <p ng-show="isAuth"> Lorem Ipsum</p>
+  <p ng-hide="isAuth"> No Lorem Ipsum</p>
 </div>
